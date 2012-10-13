@@ -8,7 +8,7 @@ Search
 {% block content %}
 <div class="row-fluid">
     <div id="searchtop">
-    <div class="span2" id="logo">logo</div>
+    <div class="span2" id="logo">logo or head</div>
     <div class="span8" id="mainsearch">
         <div class="pull-left">
             <form class="form-search" method="get" action="">
@@ -20,8 +20,20 @@ Search
     </div>
     <div class="clearfix"> </div>
     <div class="row-fluid">
-        <div class="span2" id="menu">...</div>
-        <div class="span8" id="results">...</div>
+        <div class="span2" id="menu">
+            put some dummy menu here
+        </div>
+        <div class="span8" id="results">
+            search results
+            {% for result in results %}
+            <div class="result">
+                <div class="title">
+                    <a href="{{ result }}" target="_blank">{{ result }}</a>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}

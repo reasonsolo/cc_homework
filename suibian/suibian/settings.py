@@ -155,3 +155,8 @@ LOGGING = {
         },
     }
 }
+
+# customized settings
+HBASE_HOST="localhost"
+HBASE_PORT=60000
+ROW_KEY='revind:array'

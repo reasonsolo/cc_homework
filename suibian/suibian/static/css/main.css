@@ -23,4 +23,8 @@
 
 #mainsearch,#logo {
     vertical-align: middle;
+    display: table-cell;
+}
+#mainsearch form {
+    margin: 0;
 }
