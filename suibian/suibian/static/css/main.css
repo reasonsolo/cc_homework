@@ -15,6 +15,7 @@
 #searchtop {
     height: 100px;
     margin: auto auto;
+    border-bottom: 1px #DDD solid;
 }
 #mainsearch, #results, #logo, #menu {
     line-height: 1em;
@@ -27,4 +28,7 @@
 }
 #mainsearch form {
     margin: 0;
+}
+.result {
+    margin: 30px 0px;
 }
