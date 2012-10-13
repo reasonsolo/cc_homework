@@ -127,10 +127,10 @@
 (defn -main
  ([]
   (println "Params: <URL> <CONCURRENT> <RUNNING_TIME=60sec>"))
- ([start-url agent-count]
-  (-main start-url agent-count 60000))
- ([start-url agent-count wait-time]
-    (println (binding [*base-url* "localhost:9000"]
+ ([start-url agent-count base-url]
+  (-main start-url agent-count 60000 base-url))
+ ([start-url agent-count wait-time base-url]
+    (println (binding [*base-url* base-url]
                (test-crawler (Integer. agent-count)
                              start-url
                              (Integer. wait-time))))))
