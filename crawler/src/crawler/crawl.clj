@@ -9,6 +9,10 @@
   (:import [java.net URL MalformedURLException]
            [java.util.concurrent LinkedBlockingQueue BlockingQueue]))
 
+(def *hdfs-to* "/revind/in/")
+
+(def *web-table-name* "WebData")
+
 (defn- links-from
   [base-url html]
   (remove nil? (for [link (enlive/select html [:a])]
@@ -27,6 +31,12 @@
                    (mapcat (partial re-seq #"[\u4e00-\u9fa5]+|\w+"))
                    (remove (partial re-matches #"\d+"))
                    (map lower-case)))))
+
+(defn- title-from
+  [html]
+  (if-let [title (first (enlive/select html [:title enlive/text-node]))]
+    title
+    "Untitled"))
 
 (def url-queue (LinkedBlockingQueue.))
 (def crawled-urls (atom #{}))
@@ -58,19 +68,22 @@
       {::t #'handle-results
        :url url
        :links (links-from url html)
-       :text (words-from html)})
+       :text (words-from html)
+       :title (title-from html)})
     (finally (run *agent*))))
 
 (defn ^::blocking handle-results
-  [{:keys [url links text]}]
+  [{:keys [url links text title]}]
   (try
     (swap! crawled-urls conj url)
     (doseq [url links]
       (.put url-queue url))
     (write-string
-     (str "/revind/in/" (clojure.string/replace
-                         (encode-str (.toString url)) #"/" "|"))
+     (str *hdfs-to* (clojure.string/replace
+                     (encode-str (.toString url)) #"/" "_"))
      text )
+    (hb/with-table [web-table (hb/table *web-table-name*)]
+      (hb/put web-table "url" :values [:content [:title title]]))
     {::t #'get-url :queue url-queue}
     (finally (run *agent*))))
 

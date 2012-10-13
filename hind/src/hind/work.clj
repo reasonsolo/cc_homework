@@ -23,7 +23,7 @@
                                   .getPath
                                   .getName
                                   .toString
-                                  (clojure.string/replace #"\|" "/")
+                                  (clojure.string/replace #"_" "/")
                                    decode-str Text.)))
 
 (defn string-reduce-writer [^TaskInputOutputContext context ^String key value]

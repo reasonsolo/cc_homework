@@ -7,7 +7,7 @@
            [java.io File InputStream]
            [java.net URI]))
 
-(def ^:dynamic *base-url*)
+(def ^:dynamic *base-url* "localhost:9000")
 
 (defn make-uri [pattern]
   (URI/create (str "hdfs://" *base-url* pattern)))
@@ -22,6 +22,6 @@
   (println (str "Writing file: " path))
   (let [fs  (get-fs path)
         out (.create fs (make-path path))]
-    (binding [*out* (clojure.java.io/writer out)]
-      (print string))
+    (let [wtr (clojure.java.io/writer out)]
+      (.write wtr string))
     (.close out)))
