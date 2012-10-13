@@ -1,0 +1,26 @@
+#homesearch {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+#homesearch form {
+    display: inline-block;
+    margin: 100px auto;
+    min-width: 700px;
+}
+#homesearch form input[type="text"] {
+    width: 70%;
+}
+
+#searchtop {
+    height: 100px;
+    margin: auto auto;
+}
+#mainsearch, #results, #logo, #menu {
+    line-height: 1em;
+    margin: 20px 30px;
+}
+
+#mainsearch,#logo {
+    vertical-align: middle;
+}
