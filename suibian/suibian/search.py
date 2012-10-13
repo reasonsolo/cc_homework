@@ -40,7 +40,7 @@ def search(kwords_lst):
        hbase_records[key] = record
 
     # TODO: better search logic
-    return search_results
+    return set(search_results)
 
 
 
