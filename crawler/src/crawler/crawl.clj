@@ -83,7 +83,7 @@
                      (encode-str (.toString url)) #"/" "_"))
      text )
     (hb/with-table [web-table (hb/table *web-table-name*)]
-      (hb/put web-table "url" :values [:content [:title title]]))
+      (hb/put web-table (str url) :values [:content [:title title]]))
     {::t #'get-url :queue url-queue}
     (finally (run *agent*))))
 
