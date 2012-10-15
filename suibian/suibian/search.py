@@ -38,6 +38,7 @@ def search(kwords_lst):
 
     # TODO: better search logic
     result_urls = set(search_results)
+
     url_table = conn.table('WebData')
     rows = url_table.rows(result_urls)
     results = []
