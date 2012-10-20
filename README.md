@@ -26,13 +26,15 @@
 
 
 ## Usage
-  - prepare crawler data
+  - prepare *Crawler* data
+
+        hadoop fs -mkdir /revind
       
         ./craw-web.sh your.starting.address
 
   - run *Hind*
 
-        ./hd-index.sh /your/input/path /your/output/path
+        ./hd-index.sh /revind/in /revind/out
 
   - fire up Suibian Server:
 
